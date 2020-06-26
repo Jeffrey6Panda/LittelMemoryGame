@@ -1,0 +1,45 @@
+﻿<Page x:Class="MemoryMijal.SingelplayerMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MemoryMijal"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SingelplayerMenu">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!--Buttons-->
+        <Button x:Name="btnLevel1" Content="Level 1" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Click="btnLevel1_Click"/>
+        <Button x:Name="btnLevel2" Content="Level 2" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnLevel3" Content="Level 3" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnLevel4" Content="Level 4" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSingelLoad" Content="Load" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnSingelBack" Content="Back" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="3" Click="btnSingelBack_Click"/>
+
+
+
+    </Grid>
+</Page>

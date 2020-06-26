@@ -1,0 +1,34 @@
+﻿<Page x:Class="MemoryMijal.Play"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MemoryMijal"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Play">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!--Buttons-->
+        <Button x:Name="btnSingelPlayey" Content="Singelplayer" Grid.Column="1" Grid.Row="1" Click="btnSingelPlayey_Click" />
+        <Button x:Name="btnMutliplayer" Content="Multiplayer" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="btnBack" Content="Back" Grid.Column="1" Grid.Row="5" Click="btnBack_Click" />
+
+    </Grid>
+</Page>
