@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Level1">
 
-        <Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="150"/>
@@ -25,35 +25,52 @@
         </Grid.RowDefinitions>
 
         <!--Buttons-->
-            
-            <!--
-        <Button x:Name="card1" Grid.Column="3" Grid.Row="1"/>
-        <Button x:Name="card2" Grid.Column="5" Grid.Row="1"/>
-        <Button x:Name="card3" Grid.Column="7" Grid.Row="1"/>
-        <Button x:Name="card4" Grid.Column="9" Grid.Row="1"/>
-        <Button x:Name="card5" Grid.Column="3" Grid.Row="3"/>
-        <Button x:Name="card6" Grid.Column="5" Grid.Row="3"/>
-        <Button x:Name="card7" Grid.Column="7" Grid.Row="3"/>
-        <Button x:Name="card8" Grid.Column="9" Grid.Row="3"/>
-        <Button x:Name="card9" Grid.Column="3" Grid.Row="5"/>
-        <Button x:Name="card10" Grid.Column="5" Grid.Row="5"/>
-        <Button x:Name="card11" Grid.Column="7" Grid.Row="5"/>
-        <Button x:Name="card12" Grid.Column="9" Grid.Row="5"/>
-            -->
         <Button x:Name="btnSave" Content="Save" Grid.Column="1" Grid.Row="3" />
         <Button x:Name="btnInGameEnd" Content="End" Grid.Column="3" Grid.Row="3" Click="btnInGameEnd_Click" />
 
+
         <Grid x:Name="gridCards" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1">
             <Grid.Resources>
+                <!--
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#FF2BDAE2"/>
                     <Setter Property="FontSize" Value="42"/>
                     <Setter Property="BorderThickness" Value="4"/>
                     <Setter Property="BorderBrush" Value="White"/>
                     <Setter Property="Foreground" Value="#FF2BDAE2"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Red"/>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
+                -->
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#FF2BDAE2"/>
+                    <Setter Property="FontSize" Value="42"/>
+                    <Setter Property="Foreground" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="4"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="#FF2BDAE2" BorderBrush="LightGray" BorderThickness="4">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF2BDAE2"/>
+                            <Setter Property="BorderBrush" Value="Blue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
             </Grid.Resources>
-            
+
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
@@ -75,6 +92,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <!--Cards Buttons-->
             <Button x:Name="card1" Grid.Column="1" Grid.Row="1" Click="card_Click"/>
             <Button x:Name="card2" Grid.Column="3" Grid.Row="1" Click="card_Click"/>
             <Button x:Name="card3" Grid.Column="5" Grid.Row="1" Click="card_Click"/>
@@ -88,7 +106,9 @@
             <Button x:Name="card11" Grid.Column="5" Grid.Row="5" Click="card_Click"/>
             <Button x:Name="card12" Grid.Column="7" Grid.Row="5" Click="card_Click"/>
 
+
         </Grid>
+        <Label x:Name="lbPoints" Content="Punkte: 0" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center"/>
 
 
 
