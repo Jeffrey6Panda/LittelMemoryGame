@@ -21,6 +21,7 @@ namespace MemoryMijal
     {
         private bool multiplayer;
         Random random = new Random();
+        bool cardOne = true;
 
         List<string> nummbers = new List<string>()
         {
@@ -33,6 +34,8 @@ namespace MemoryMijal
             ButtonsGetFill();
             multiplayer = pMultiplayer;
         }
+
+
 
         private void ButtonsGetFill()
         {
@@ -56,6 +59,16 @@ namespace MemoryMijal
         private void btnInGameEnd_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MainMenu());
+        }
+
+        Button clieckedButtonOne;
+        private void card_Click(object sender, RoutedEventArgs e)
+        {
+            if (cardOne)
+            {
+                clieckedButtonOne = sender as Button;
+                clieckedButtonOne.Foreground = Brushes.Black;
+            }
         }
     }
 }
