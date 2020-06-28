@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,13 +10,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Linq;
 
 namespace MemoryMijal
 {
     /// <summary>
-    /// Interaktionslogik für Level1.xaml
+    /// Interaktionslogik für Level2.xaml
     /// </summary>
-    public partial class Level1 : Page
+    public partial class Level2 : Page
     {
         private bool multiplayer;
         private bool playerOne = true;
@@ -32,10 +31,11 @@ namespace MemoryMijal
 
         List<string> nummbers = new List<string>()
         {
-            "1","1","2","2","3","3","4","4","5","5","6","6",
+            "1","1","2","2","3","3","4","4","5","5",
+            "6","6","7","7","8","8","9","9","10","10",
         };
 
-        public Level1(bool pMultiplayer)
+        public Level2(bool pMultiplayer)
         {
             InitializeComponent();
             MultiplayerCheck(pMultiplayer);
@@ -204,11 +204,6 @@ namespace MemoryMijal
                 pointsMplTwo++;
                 lbPointsPlayerTwo.Content = "Points: " + pointsMplTwo;
             }
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

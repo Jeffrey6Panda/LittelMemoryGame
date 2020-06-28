@@ -14,28 +14,27 @@ using System.Windows.Shapes;
 namespace MemoryMijal
 {
     /// <summary>
-    /// Interaktionslogik für SingelplayerMenu.xaml
+    /// Interaktionslogik für MultiplayerMenu.xaml
     /// </summary>
-    public partial class SingelplayerMenu : Page
+    public partial class MultiplayerMenu : Page
     {
-        public SingelplayerMenu()
+        public MultiplayerMenu()
         {
             InitializeComponent();
         }
-
-        private void btnSingelBack_Click(object sender, RoutedEventArgs e)
+        private void btnMultiBack_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Play());
         }
 
         private void btnLevel1_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Level1(false));
+            this.NavigationService.Navigate(new Level1(true));
         }
 
         private void btnLevel2_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Level2(false));
+            this.NavigationService.Navigate(new Level2(true));
         }
     }
 }

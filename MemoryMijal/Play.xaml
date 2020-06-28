@@ -27,7 +27,7 @@
 
         <!--Buttons-->
         <Button x:Name="btnSingelPlayey" Content="Singelplayer" Grid.Column="1" Grid.Row="1" Click="btnSingelPlayey_Click" />
-        <Button x:Name="btnMutliplayer" Content="Multiplayer" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="btnMutliplayer" Content="Multiplayer" Grid.Column="1" Grid.Row="3" Click="btnMutliplayer_Click" />
         <Button x:Name="btnBack" Content="Back" Grid.Column="1" Grid.Row="5" Click="btnBack_Click" />
 
     </Grid>

@@ -32,5 +32,10 @@ namespace MemoryMijal
         {
             this.NavigationService.Navigate(new MainMenu());
         }
+
+        private void btnMutliplayer_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new MultiplayerMenu());
+        }
     }
 }

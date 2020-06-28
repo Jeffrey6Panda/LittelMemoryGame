@@ -31,7 +31,6 @@ namespace MemoryMijal
 
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(1000);
             Application.Current.Shutdown();
         }
     }
