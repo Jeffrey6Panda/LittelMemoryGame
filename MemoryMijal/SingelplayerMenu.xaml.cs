@@ -37,5 +37,11 @@ namespace MemoryMijal
         {
             this.NavigationService.Navigate(new Level2(false));
         }
+
+        private void btnSingelLoad_Click(object sender, RoutedEventArgs e)
+        {
+            SaveGame saveGame = new SaveGame();
+            saveGame.Load();
+        }
     }
 }
