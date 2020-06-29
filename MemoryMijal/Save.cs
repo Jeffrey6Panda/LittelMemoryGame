@@ -29,12 +29,12 @@ namespace MemoryMijal
             var formatter = new BinaryFormatter();
 
             List<string> buttonContentSave = new List<string>();
-            List<string> buttonVisibilitySave = new List<string>();
+            List<Visibility> buttonVisibilitySave = new List<Visibility>();
             for (int i = 0; i < saveGrid.Children.Count; i++)
             {
                 saveButton = (Button)saveGrid.Children[i];
                 buttonContentSave.Add(saveButton.Content.ToString());
-                buttonVisibilitySave.Add(saveButton.Visibility.ToString());
+                buttonVisibilitySave.Add(saveButton.Visibility);
             }
 
             using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Create, FileAccess.Write))
@@ -42,7 +42,6 @@ namespace MemoryMijal
                 formatter.Serialize(fileSteam, buttonContentSave);
                 formatter.Serialize(fileSteam, buttonVisibilitySave);
                 formatter.Serialize(fileSteam, pPoints);
-                formatter.Serialize(fileSteam, map);
             }
 
             MessageBox.Show("The game has been saved.", "Saving");
@@ -51,22 +50,17 @@ namespace MemoryMijal
         {
             var formatter = new BinaryFormatter();
             List<string> buttonContentLoad = new List<string>();
-            List<string> buttonVisibilityLoad = new List<string>();
+            List<Visibility> buttonVisibilityLoad = new List<Visibility>();
             int pointsLoad;
-            string mapLoad;
 
             using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
             {
                 buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<string>)formatter.Deserialize(fileSteam);
+                buttonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
                 pointsLoad = (int)formatter.Deserialize(fileSteam);
-                mapLoad = (string)formatter.Deserialize(fileSteam);
-
-                MessageBox.Show(buttonContentLoad[1].ToString());
-                MessageBox.Show(buttonVisibilityLoad[1].ToString());
-                MessageBox.Show(pointsLoad.ToString());
-                MessageBox.Show(mapLoad);
             }
+
+            Level1 lvl1 = new Level1(false, buttonContentLoad, buttonVisibilityLoad, pointsLoad);
         }
     }
 }

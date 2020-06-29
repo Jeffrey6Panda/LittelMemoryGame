@@ -45,7 +45,13 @@ namespace MemoryMijal
             multiplayer = pMultiplayer;
         }
 
-
+        public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        {
+            InitializeComponent();
+            MultiplayerCheck(pMultiplayer);
+            ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
+            multiplayer = pMultiplayer;
+        }
 
         private void ButtonsGetFill()
         {
@@ -66,6 +72,24 @@ namespace MemoryMijal
             }
 
         }
+
+        private void ButtonsGetFill(List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        {
+
+            Button button;
+            points = pPointsLoad;
+
+            for (int i = 0; i < gridCards.Children.Count; i++)
+            {
+                if (gridCards.Children[i] is Button)
+                    button = (Button)gridCards.Children[i];
+                else
+                    continue;
+                button.Content = pPuttonContentLoad[i];
+                button.Visibility = pButtonVisibilityLoad[i];
+            }
+        }
+        #region Gameplay
         private void btnInGameEnd_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MainMenu());
@@ -213,51 +237,6 @@ namespace MemoryMijal
             SaveGame saveGrid = new SaveGame();
             saveGrid.Save(gridCards, points, "Level1");
         }
+        #endregion
     }
-    /*
-    class SaveGame
-    {
-        public void Save(object pGrid, int pPoints, string map)
-        {
-            int savePoints = pPoints;
-
-            Grid saveGrid = new Grid();
-            saveGrid = pGrid as Grid;
-            Button saveButton = new Button();
-            var formatter = new BinaryFormatter();
-
-            List<string> buttonContentSave = new List<string>();
-            List<string> buttonVisibilitySave = new List<string>();
-            for (int i = 0; i < saveGrid.Children.Count; i++)
-            {
-                saveButton = (Button)saveGrid.Children[i];
-                buttonContentSave.Add(saveButton.Content.ToString());
-                buttonVisibilitySave.Add(saveButton.Visibility.ToString());
-            }
-
-            using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Create, FileAccess.Write))
-            {
-                formatter.Serialize(fileSteam, buttonContentSave);
-                formatter.Serialize(fileSteam, buttonVisibilitySave);
-                formatter.Serialize(fileSteam, savePoints);
-            }
-
-            MessageBox.Show("The game has been saved.", "Saving");
-
-            
-            List<string> buttonContentLoad = new List<string>();
-            List<string> buttonVisibilityLoad = new List<string>();
-
-            using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
-            {
-                buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<string>)formatter.Deserialize(fileSteam);
-
-                MessageBox.Show(buttonContentLoad[1].ToString());
-                MessageBox.Show(buttonVisibilityLoad[1].ToString());
-            }
-            
-        }
-    }
-    */
 }
