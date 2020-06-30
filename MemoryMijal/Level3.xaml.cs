@@ -22,9 +22,9 @@ using System.Windows.Threading;
 namespace MemoryMijal
 {
     /// <summary>
-    /// Interaktionslogik für Level2.xaml
+    /// Interaktionslogik für Level3.xaml
     /// </summary>
-    public partial class Level2 : Page
+    public partial class Level3 : Page
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         Stopwatch stopWatch = new Stopwatch();
@@ -42,9 +42,10 @@ namespace MemoryMijal
         {
             "1","1","2","2","3","3","4","4","5","5",
             "6","6","7","7","8","8","9","9","10","10",
+            "11","11","12","12","13","13","14","14","15","15",
         };
 
-        public Level2(bool pMultiplayer)
+        public Level3(bool pMultiplayer)
         {
             InitializeComponent();
             Timer();
@@ -77,7 +78,7 @@ namespace MemoryMijal
             }
 
         }
-        public Level2(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        public Level3(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
         {
             InitializeComponent();
             Timer();
@@ -265,10 +266,10 @@ namespace MemoryMijal
         #endregion
 
         #region SaveButton
-        private void btnSave2_Click(object sender, RoutedEventArgs e)
+        private void btnSave3_Click(object sender, RoutedEventArgs e)
         {
             SaveGame saveGrid = new SaveGame();
-            saveGrid.Save(gridCards, points, Level.Level2);
+            saveGrid.Save(gridCards, points, Level.Level3);
         }
         #endregion
     }

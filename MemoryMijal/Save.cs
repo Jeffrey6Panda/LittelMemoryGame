@@ -22,6 +22,32 @@ namespace MemoryMijal
 {
     class SaveGame
     {
+        private Level lvl;
+        private int pointsLoad;
+        private List<string> buttonContentLoad = new List<string>();
+        private List<Visibility> buttonVisibilityLoad = new List<Visibility>();
+
+        public Level Lvl
+        {
+            get { return lvl; }
+            set { lvl = value; }
+        }
+        public int PointsLoad
+        {
+            get { return pointsLoad; }
+            set { pointsLoad = value; }
+        }
+        public List<string> ButtonContentLoad
+        {
+            get { return buttonContentLoad; }
+            set { buttonContentLoad = value; }
+        }
+        public List<Visibility> ButtonVisibiltyLoad
+        {
+            get { return buttonVisibilityLoad; }
+            set { buttonVisibilityLoad = value; }
+        }
+
         public void Save(object pGrid, int pPoints, Level pLvl)
         {
             Grid saveGrid = new Grid();
@@ -29,7 +55,6 @@ namespace MemoryMijal
             var formatter = new BinaryFormatter();
             Button saveButton = new Button();
 
-            Level lvl = pLvl;
             List<string> buttonContentSave = new List<string>();
             List<Visibility> buttonVisibilitySave = new List<Visibility>();
             for (int i = 0; i < saveGrid.Children.Count; i++)
@@ -44,82 +69,31 @@ namespace MemoryMijal
                 formatter.Serialize(fileSteam, buttonContentSave);
                 formatter.Serialize(fileSteam, buttonVisibilitySave);
                 formatter.Serialize(fileSteam, pPoints);
-                formatter.Serialize(fileSteam, lvl);
+                formatter.Serialize(fileSteam, pLvl);
             }
 
             MessageBox.Show("The game has been saved.", "Saving");
         }
 
-        public List<string> LoadBtnContent()
+        public void Load()
         {
             var formatter = new BinaryFormatter();
-            Level lvl;
-            int pointsLoad;
-            List<string> buttonContentLoad = new List<string>();
-            List<Visibility> buttonVisibilityLoad = new List<Visibility>();
+            Level bufferLvl;
+            int bufferPointsLoad;
+            List<string> bufferButtonContentLoad = new List<string>();
+            List<Visibility> bufferButtonVisibilityLoad = new List<Visibility>();
 
             using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
             {
-                buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
-                pointsLoad = (int)formatter.Deserialize(fileSteam);
-                lvl = (Level)formatter.Deserialize(fileSteam);
+                bufferButtonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
+                bufferButtonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
+                bufferPointsLoad = (int)formatter.Deserialize(fileSteam);
+                bufferLvl = (Level)formatter.Deserialize(fileSteam);
             }
-            return buttonContentLoad;
-        }
-        public List<Visibility> LoadBtnVisibility()
-        {
-            var formatter = new BinaryFormatter();
-            Level lvl;
-            int pointsLoad;
-            List<string> buttonContentLoad = new List<string>();
-            List<Visibility> buttonVisibilityLoad = new List<Visibility>();
-
-            using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
-            {
-                buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
-                pointsLoad = (int)formatter.Deserialize(fileSteam);
-                lvl = (Level)formatter.Deserialize(fileSteam);
-            }
-            return buttonVisibilityLoad;
-        }
-
-        public int LoadPoints()
-        {
-            var formatter = new BinaryFormatter();
-            Level lvl;
-            int pointsLoad;
-            List<string> buttonContentLoad = new List<string>();
-            List<Visibility> buttonVisibilityLoad = new List<Visibility>();
-
-            using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
-            {
-                buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
-                pointsLoad = (int)formatter.Deserialize(fileSteam);
-                lvl = (Level)formatter.Deserialize(fileSteam);
-            }
-            return pointsLoad;
-        }
-
-
-        public Level Loadlevel()
-        {
-            var formatter = new BinaryFormatter();
-            Level lvl;
-            int pointsLoad;
-            List<string> buttonContentLoad = new List<string>();
-            List<Visibility> buttonVisibilityLoad = new List<Visibility>();
-
-            using (Stream fileSteam = new FileStream("Savegame.bin", FileMode.Open, FileAccess.Read))
-            {
-                buttonContentLoad = (List<string>)formatter.Deserialize(fileSteam);
-                buttonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
-                pointsLoad = (int)formatter.Deserialize(fileSteam);
-                lvl = (Level)formatter.Deserialize(fileSteam);
-            }
-            return lvl;
+            Lvl = bufferLvl;
+            PointsLoad = bufferPointsLoad;
+            ButtonContentLoad = bufferButtonContentLoad;
+            ButtonVisibiltyLoad = bufferButtonVisibilityLoad;
         }
     }
 }

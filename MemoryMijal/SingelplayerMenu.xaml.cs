@@ -38,24 +38,37 @@ namespace MemoryMijal
             this.NavigationService.Navigate(new Level2(false));
         }
 
+        private void btnLevel3_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Level3(false));
+        }
+
+        private void btnLevel4_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Level4(false));
+        }
         private void btnSingelLoad_Click(object sender, RoutedEventArgs e)
         {
             SaveGame sg = new SaveGame();
-            switch (sg.Loadlevel())
+            sg.Load();
+            switch (sg.Lvl)
             {
                 case Level.Level1:
-                    this.NavigationService.Navigate(new Level1(false, sg.LoadBtnContent(), sg.LoadBtnVisibility(), sg.LoadPoints()));
+                    this.NavigationService.Navigate(new Level1(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
                     break;
                 case Level.Level2:
-                    this.NavigationService.Navigate(new Level2(false, sg.LoadBtnContent(), sg.LoadBtnVisibility(), sg.LoadPoints()));
+                    this.NavigationService.Navigate(new Level2(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
                     break;
                 case Level.Level3:
+                    this.NavigationService.Navigate(new Level3(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
                     break;
                 case Level.Level4:
+                    this.NavigationService.Navigate(new Level4(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
                     break;
                 default:
                     break;
             }
         }
+
     }
 }

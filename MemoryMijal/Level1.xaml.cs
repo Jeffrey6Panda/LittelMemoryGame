@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,15 +8,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MemoryMijal
 {
@@ -24,6 +28,10 @@ namespace MemoryMijal
     /// </summary>
     public partial class Level1 : Page
     {
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        Stopwatch stopWatch = new Stopwatch();
+        string currentTime;
+
         private bool multiplayer;
         private bool playerOne = true;
         Random random = new Random();
@@ -40,9 +48,14 @@ namespace MemoryMijal
         public Level1(bool pMultiplayer)
         {
             InitializeComponent();
+            Timer();
             MultiplayerCheck(pMultiplayer);
             ButtonsGetFill();
             multiplayer = pMultiplayer;
+            if (multiplayer)
+            {
+                btnSave.Visibility = Visibility.Hidden;
+            }
         }
 
 
@@ -68,9 +81,14 @@ namespace MemoryMijal
         public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
         {
             InitializeComponent();
+            Timer();
             MultiplayerCheck(pMultiplayer);
             ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
             multiplayer = pMultiplayer;
+            if (multiplayer)
+            {
+                btnSave.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ButtonsGetFill(List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
@@ -231,13 +249,28 @@ namespace MemoryMijal
                 lbPointsPlayerTwo.Content = "Points: " + pointsMplTwo;
             }
         }
+        
+        public void Timer()
+        {
+            dispatcherTimer.Tick += new EventHandler(Timer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            stopWatch.Start();  
+            dispatcherTimer .Start();  
+        }
+        void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan ts = stopWatch.Elapsed;
+            currentTime = String.Format("Time: {0:00}:{1:00}",
+            ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            lbTimer.Content = currentTime;
+        }
         #endregion
 
         #region SaveButton
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             SaveGame saveGrid = new SaveGame();
-            saveGrid.Save(gridCards, points, Level.Level2);
+            saveGrid.Save(gridCards, points, Level.Level1);
         }
         #endregion
     }

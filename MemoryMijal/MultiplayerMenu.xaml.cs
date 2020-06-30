@@ -36,5 +36,15 @@ namespace MemoryMijal
         {
             this.NavigationService.Navigate(new Level2(true));
         }
+
+        private void btnLevel3_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Level3(true));
+        }
+
+        private void btnLevel4_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Level4(true));
+        }
     }
 }
