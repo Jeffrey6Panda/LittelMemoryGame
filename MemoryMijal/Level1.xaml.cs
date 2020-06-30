@@ -45,13 +45,6 @@ namespace MemoryMijal
             multiplayer = pMultiplayer;
         }
 
-        public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
-        {
-            InitializeComponent();
-            MultiplayerCheck(pMultiplayer);
-            ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
-            multiplayer = pMultiplayer;
-        }
 
         private void ButtonsGetFill()
         {
@@ -71,6 +64,13 @@ namespace MemoryMijal
                 nummbers.RemoveAt(randomNumber);
             }
 
+        }
+        public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        {
+            InitializeComponent();
+            MultiplayerCheck(pMultiplayer);
+            ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
+            multiplayer = pMultiplayer;
         }
 
         private void ButtonsGetFill(List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
@@ -231,11 +231,13 @@ namespace MemoryMijal
                 lbPointsPlayerTwo.Content = "Points: " + pointsMplTwo;
             }
         }
+        #endregion
 
+        #region SaveButton
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             SaveGame saveGrid = new SaveGame();
-            saveGrid.Save(gridCards, points, "Level1");
+            saveGrid.Save(gridCards, points, Level.Level2);
         }
         #endregion
     }

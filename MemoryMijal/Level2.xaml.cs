@@ -64,6 +64,31 @@ namespace MemoryMijal
             }
 
         }
+
+        public Level2(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        {
+            InitializeComponent();
+            MultiplayerCheck(pMultiplayer);
+            ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
+            multiplayer = pMultiplayer;
+        }
+
+        private void ButtonsGetFill(List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        {
+
+            Button button;
+            points = pPointsLoad;
+
+            for (int i = 0; i < gridCards.Children.Count; i++)
+            {
+                if (gridCards.Children[i] is Button)
+                    button = (Button)gridCards.Children[i];
+                else
+                    continue;
+                button.Content = pPuttonContentLoad[i];
+                button.Visibility = pButtonVisibilityLoad[i];
+            }
+        }
         private void btnInGameEnd_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MainMenu());
@@ -205,5 +230,12 @@ namespace MemoryMijal
                 lbPointsPlayerTwo.Content = "Points: " + pointsMplTwo;
             }
         }
+        #region SaveButton
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveGame saveGrid = new SaveGame();
+            saveGrid.Save(gridCards, points, Level.Level2);
+        }
+        #endregion
     }
 }

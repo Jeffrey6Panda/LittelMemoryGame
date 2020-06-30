@@ -40,8 +40,22 @@ namespace MemoryMijal
 
         private void btnSingelLoad_Click(object sender, RoutedEventArgs e)
         {
-            SaveGame saveGame = new SaveGame();
-            saveGame.Load();
+            SaveGame sg = new SaveGame();
+            switch (sg.Loadlevel())
+            {
+                case Level.Level1:
+                    this.NavigationService.Navigate(new Level1(false, sg.LoadBtnContent(), sg.LoadBtnVisibility(), sg.LoadPoints()));
+                    break;
+                case Level.Level2:
+                    this.NavigationService.Navigate(new Level2(false, sg.LoadBtnContent(), sg.LoadBtnVisibility(), sg.LoadPoints()));
+                    break;
+                case Level.Level3:
+                    break;
+                case Level.Level4:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

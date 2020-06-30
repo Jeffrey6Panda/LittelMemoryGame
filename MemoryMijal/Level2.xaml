@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <!--Buttons-->
-        <Button x:Name="btnSave" Content="Save" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="btnSave" Content="Save" Grid.Column="1" Grid.Row="3" Click="btnSave_Click" />
         <Button x:Name="btnInGameEnd" Content="End" Grid.Column="3" Grid.Row="3" Click="btnInGameEnd_Click" />
 
 
