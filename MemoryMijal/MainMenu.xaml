@@ -24,8 +24,22 @@
         </Grid.RowDefinitions>
 
         <!--Buttons-->
-        <Button x:Name="btnPlay" Content="Play" Grid.Column="1" Grid.Row="1" Click="btnPlay_Click"/>
-        <Button x:Name="btnEnd" Content="End" Grid.Column="1" Grid.Row="3" Click="btnEnd_Click" />
+        <Button x:Name="btnPlay" Content="Play" Grid.Column="1" Grid.Row="1" Click="btnPlay_Click" FontSize="16"/>
+        <Button x:Name="btnEnd" Content="End" Grid.Column="1" Grid.Row="3" Click="btnEnd_Click" FontSize="16"/>
+
+        <Label Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Littel&#x0a;Memory&#x0a;Game" TextAlignment="Center" FontSize="48" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="9"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Label>
+        <Label Content="© Gregor Mijal" Grid.Row="4" Grid.Column="2" Margin="0,0,10,0" HorizontalAlignment="Right"/>
 
     </Grid>
 </Page>
