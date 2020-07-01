@@ -27,8 +27,14 @@ namespace MemoryMijal
     public partial class Level4 : Page
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        Stopwatch stopWatch = new Stopwatch();
-        string currentTime;
+        DateTime timeStart = DateTime.Now;
+        TimeSpan timeLoad;
+        TimeSpan timeSave;
+        public TimeSpan TimeSave
+        {
+            get { return timeSave; }
+            set { timeSave = value; }
+        }
 
         private bool multiplayer;
         private bool playerOne = true;
@@ -83,9 +89,10 @@ namespace MemoryMijal
             }
 
         }
-        public Level4(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        public Level4(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad, TimeSpan pTimeSpan)
         {
             InitializeComponent();
+            timeLoad = pTimeSpan;
             Timer();
             MultiplayerCheck(pMultiplayer);
             ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
@@ -168,7 +175,8 @@ namespace MemoryMijal
                 {
                     lbEndScene.Visibility = Visibility.Visible;
                     txtEndPoints.Text = points.ToString();
-                    txtEndTime.Text = currentTime;
+                    txtEndTime.Text = String.Format("{0:00}:{1:00}",
+                    TimeSave.Minutes, TimeSave.Seconds, TimeSave.Milliseconds / 10);
                     txtEndTurns.Text = turns.ToString();
                     btnSave.IsEnabled = false;
                 }
@@ -269,15 +277,14 @@ namespace MemoryMijal
         {
             dispatcherTimer.Tick += new EventHandler(Timer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            stopWatch.Start();
             dispatcherTimer.Start();
         }
         void Timer_Tick(object sender, EventArgs e)
         {
-            TimeSpan ts = stopWatch.Elapsed;
-            currentTime = String.Format("{0:00}:{1:00}",
-            ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-            lbTimer.Content = currentTime;
+            TimeSpan currentTime = DateTime.Now - timeStart + timeLoad;
+            lbTimer.Content = String.Format("{0:00}:{1:00}",
+            currentTime.Minutes, currentTime.Seconds, currentTime.Milliseconds / 10);
+            TimeSave = currentTime;
         }
         #endregion
 
@@ -285,7 +292,7 @@ namespace MemoryMijal
         private void btnSave3_Click(object sender, RoutedEventArgs e)
         {
             SaveGame saveGrid = new SaveGame();
-            saveGrid.Save(gridCards, points, Level.Level4);
+            saveGrid.Save(gridCards, points, Level.Level4, TimeSave);
         }
         #endregion
     }

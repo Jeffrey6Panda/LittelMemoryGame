@@ -26,6 +26,7 @@ namespace MemoryMijal
         private int pointsLoad;
         private List<string> buttonContentLoad = new List<string>();
         private List<Visibility> buttonVisibilityLoad = new List<Visibility>();
+        private TimeSpan timeLoad;
 
         public Level Lvl
         {
@@ -47,8 +48,12 @@ namespace MemoryMijal
             get { return buttonVisibilityLoad; }
             set { buttonVisibilityLoad = value; }
         }
-
-        public void Save(object pGrid, int pPoints, Level pLvl)
+        public TimeSpan TimeLoad
+        {
+            get { return timeLoad; }
+            set { timeLoad = value; }
+        }
+        public void Save(object pGrid, int pPoints, Level pLvl, TimeSpan pTimeSave)
         {
             Grid saveGrid = new Grid();
             saveGrid = pGrid as Grid;
@@ -70,6 +75,7 @@ namespace MemoryMijal
                 formatter.Serialize(fileSteam, buttonVisibilitySave);
                 formatter.Serialize(fileSteam, pPoints);
                 formatter.Serialize(fileSteam, pLvl);
+                formatter.Serialize(fileSteam, pTimeSave);
             }
 
             MessageBox.Show("The game has been saved.", "Saving");
@@ -78,6 +84,7 @@ namespace MemoryMijal
         public void Load()
         {
             var formatter = new BinaryFormatter();
+            TimeSpan bufferTimeLoad;
             Level bufferLvl;
             int bufferPointsLoad;
             List<string> bufferButtonContentLoad = new List<string>();
@@ -89,11 +96,13 @@ namespace MemoryMijal
                 bufferButtonVisibilityLoad = (List<Visibility>)formatter.Deserialize(fileSteam);
                 bufferPointsLoad = (int)formatter.Deserialize(fileSteam);
                 bufferLvl = (Level)formatter.Deserialize(fileSteam);
+                bufferTimeLoad = (TimeSpan)formatter.Deserialize(fileSteam);
             }
             Lvl = bufferLvl;
             PointsLoad = bufferPointsLoad;
             ButtonContentLoad = bufferButtonContentLoad;
             ButtonVisibiltyLoad = bufferButtonVisibilityLoad;
+            TimeLoad = bufferTimeLoad;
         }
     }
 }

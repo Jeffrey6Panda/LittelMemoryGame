@@ -30,6 +30,14 @@ namespace MemoryMijal
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         DateTime timeStart = DateTime.Now;
+        TimeSpan timeLoad;
+        TimeSpan timeSave;
+
+        public TimeSpan TimeSave
+        {
+            get { return timeSave; }
+            set { timeSave = value; }
+        }
 
         private bool multiplayer;
         private bool playerOne = true;
@@ -79,9 +87,10 @@ namespace MemoryMijal
             }
 
         }
-        public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad)
+        public Level1(bool pMultiplayer, List<string> pPuttonContentLoad, List<Visibility> pButtonVisibilityLoad, int pPointsLoad, TimeSpan pTimeSpan)
         {
             InitializeComponent();
+            timeLoad = pTimeSpan;
             Timer();
             MultiplayerCheck(pMultiplayer);
             ButtonsGetFill(pPuttonContentLoad, pButtonVisibilityLoad, pPointsLoad);
@@ -163,7 +172,8 @@ namespace MemoryMijal
                 {
                     lbEndScene.Visibility = Visibility.Visible;
                     txtEndPoints.Text = points.ToString();
-                    //txtEndTime.Text = currentTime;
+                    txtEndTime.Text = String.Format("{0:00}:{1:00}",
+                    TimeSave.Minutes, TimeSave.Seconds, TimeSave.Milliseconds / 10);
                     txtEndTurns.Text = turns.ToString();
                     btnSave.IsEnabled = false;
                 }
@@ -270,9 +280,10 @@ namespace MemoryMijal
         }
         void Timer_Tick(object sender, EventArgs e)
         {
-            DateTime currentTime = DateTime.Now;
-            currentTime.Subtract(timeStart);
-            lbTimer.Content = currentTime.ToString("mm:ss");
+            TimeSpan currentTime = DateTime.Now - timeStart + timeLoad;
+            lbTimer.Content = String.Format("{0:00}:{1:00}",
+            currentTime.Minutes, currentTime.Seconds, currentTime.Milliseconds / 10);
+            TimeSave = currentTime;
         }
         #endregion
 
@@ -280,7 +291,7 @@ namespace MemoryMijal
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             SaveGame saveGrid = new SaveGame();
-            saveGrid.Save(gridCards, points, Level.Level1);
+            saveGrid.Save(gridCards, points, Level.Level1, TimeSave);
         }
         #endregion
     }

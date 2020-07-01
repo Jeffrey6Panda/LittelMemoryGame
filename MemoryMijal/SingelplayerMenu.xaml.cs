@@ -54,16 +54,16 @@ namespace MemoryMijal
             switch (sg.Lvl)
             {
                 case Level.Level1:
-                    this.NavigationService.Navigate(new Level1(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
+                    this.NavigationService.Navigate(new Level1(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad, sg.TimeLoad));
                     break;
                 case Level.Level2:
-                    this.NavigationService.Navigate(new Level2(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
+                    this.NavigationService.Navigate(new Level2(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad, sg.TimeLoad));
                     break;
                 case Level.Level3:
-                    this.NavigationService.Navigate(new Level3(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
+                    this.NavigationService.Navigate(new Level3(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad, sg.TimeLoad));
                     break;
                 case Level.Level4:
-                    this.NavigationService.Navigate(new Level4(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad));
+                    this.NavigationService.Navigate(new Level4(false, sg.ButtonContentLoad, sg.ButtonVisibiltyLoad, sg.PointsLoad, sg.TimeLoad));
                     break;
                 default:
                     break;
