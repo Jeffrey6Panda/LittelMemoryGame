@@ -35,6 +35,8 @@ namespace MemoryMijal
         Random random = new Random();
         bool cardTwo = false;
         int points = 0;
+        int turns = 0;
+        int pairCounter = 10;
         int pointsMplOne = 0;
         int pointsMplTwo = 0;
 
@@ -95,6 +97,7 @@ namespace MemoryMijal
 
             Button button;
             points = pPointsLoad;
+            lbPoints.Content = "Points: " + points;
 
             for (int i = 0; i < gridCards.Children.Count; i++)
             {
@@ -143,6 +146,7 @@ namespace MemoryMijal
                         lbPoints.Content = "Points: " + points;
                         clieckedButtonOne.Visibility = Visibility.Hidden;
                         clieckedButtonTwo.Visibility = Visibility.Hidden;
+                        pairCounter--;
                     }
                     else
                     {
@@ -153,7 +157,16 @@ namespace MemoryMijal
                     clieckedButtonOne = null;
                     clieckedButtonTwo = null;
                     cardTwo = false;
+                    turns++;
                     AllButtonsEnable();
+                }
+                if (pairCounter == 0)
+                {
+                    lbEndScene.Visibility = Visibility.Visible;
+                    txtEndPoints.Text = points.ToString();
+                    txtEndTime.Text = currentTime;
+                    txtEndTurns.Text = turns.ToString();
+                    btnSave.IsEnabled = false;
                 }
             }
             #endregion
@@ -258,7 +271,7 @@ namespace MemoryMijal
         void Timer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stopWatch.Elapsed;
-            currentTime = String.Format("Time: {0:00}:{1:00}",
+            currentTime = String.Format("{0:00}:{1:00}",
             ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             lbTimer.Content = currentTime;
         }
