@@ -48,6 +48,8 @@ namespace MemoryMijal
         int pairCounter = 6;
         int pointsMplOne = 0;
         int pointsMplTwo = 0;
+        int turnsMplOne = 0;
+        int turnsMplTwo = 0;
 
         List<string> nummbers = new List<string>()
         {
@@ -203,6 +205,7 @@ namespace MemoryMijal
                         MultiplayerPonitWriter(playerOne);
                         clieckedButtonOne.Visibility = Visibility.Hidden;
                         clieckedButtonTwo.Visibility = Visibility.Hidden;
+                        pairCounter--;
                     }
                     else
                     {
@@ -218,14 +221,27 @@ namespace MemoryMijal
                         playerOne = false;
                         lbPlayerTrun.Content = "Player Two Trun";
                         lbPlayerTrun.Foreground = Brushes.Red;
+                        turnsMplOne++;
                     }
                     else
                     {
                         playerOne = true;
                         lbPlayerTrun.Content = "Player One Trun";
                         lbPlayerTrun.Foreground = Brushes.Blue;
+                        turnsMplTwo++;
                     }
                     AllButtonsEnable();
+                }
+                if (pairCounter == 0)
+                {
+                    lbEndSceneMP.Visibility = Visibility.Visible;
+                    txtEndPointsP1.Text = pointsMplOne.ToString();
+                    txtEndPointsP2.Text = pointsMplTwo.ToString();
+                    txtEndTimeMP.Text = String.Format("{0:00}:{1:00}",
+                    TimeSave.Minutes, TimeSave.Seconds, TimeSave.Milliseconds / 10);
+                    txtEndTurnsP1.Text = turnsMplOne.ToString();
+                    txtEndTurnsP2.Text = turnsMplTwo.ToString();
+                    MultiplayerWinner();
                 }
             }
             #endregion
@@ -269,6 +285,24 @@ namespace MemoryMijal
             {
                 pointsMplTwo++;
                 lbPointsPlayerTwo.Content = "Points: " + pointsMplTwo;
+            }
+        }
+        public void MultiplayerWinner()
+        {
+            if (pointsMplOne>pointsMplTwo)
+            {
+                txtWinner.Text = "Winner Player 1";
+                txtWinner.Foreground = Brushes.Blue;
+            }
+            else if (pointsMplTwo>pointsMplOne)
+            {
+                txtWinner.Text = "Winner Player 2";
+                txtWinner.Foreground = Brushes.Red;
+            }
+            else if (pointsMplOne == pointsMplTwo)
+            {
+                txtWinner.Text = "Draw";
+                txtWinner.Foreground = Brushes.Black;
             }
         }
         
