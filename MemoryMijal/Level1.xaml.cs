@@ -172,6 +172,7 @@ namespace MemoryMijal
                 }
                 if(pairCounter == 0)
                 {
+                    dispatcherTimer.Stop();
                     lbEndScene.Visibility = Visibility.Visible;
                     txtEndPoints.Text = points.ToString();
                     txtEndTime.Text = String.Format("{0:00}:{1:00}",
@@ -234,6 +235,7 @@ namespace MemoryMijal
                 }
                 if (pairCounter == 0)
                 {
+                    dispatcherTimer.Stop();
                     lbEndSceneMP.Visibility = Visibility.Visible;
                     txtEndPointsP1.Text = pointsMplOne.ToString();
                     txtEndPointsP2.Text = pointsMplTwo.ToString();
@@ -310,7 +312,7 @@ namespace MemoryMijal
         {
             dispatcherTimer.Tick += new EventHandler(Timer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            dispatcherTimer .Start();  
+            dispatcherTimer.Start();  
         }
         void Timer_Tick(object sender, EventArgs e)
         {
