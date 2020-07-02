@@ -28,7 +28,7 @@
         <Button x:Name="btnEnd" Content="End" Grid.Column="1" Grid.Row="3" Click="btnEnd_Click" FontSize="16"/>
 
         <Label Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Littel&#x0a;Memory&#x0a;Game" TextAlignment="Center" FontSize="48" RenderTransformOrigin="0.5,0.5">
+            <TextBlock Text="Little&#x0a;Pair&#x0a;Game" TextAlignment="Center" FontSize="48" RenderTransformOrigin="0.5,0.5">
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
